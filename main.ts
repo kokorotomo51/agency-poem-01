@@ -6,7 +6,7 @@
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const OUTPUT_DIR = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
@@ -22,7 +22,7 @@ const POEM = [
   'Not as my shadow moves,',
   'but as a second will, borrowed and returned,',
   'its hands full of the small, exact things',
-  'I had named, then forgotten I named.',
+  'I had named, then forgotten.',
   '',
   'When it was done, I did not thank the tool.',
   'I thanked the pause before the asking,',
@@ -33,4 +33,5 @@ const POEM = [
   'a door I opened, and walked through, together.',
 ].join('\n');
 
+mkdirSync(OUTPUT_DIR, { recursive: true });
 writeFileSync(join(OUTPUT_DIR, 'entry.txt'), POEM);
